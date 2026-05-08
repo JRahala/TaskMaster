@@ -417,9 +417,9 @@ if __name__ == "__main__":
     scheduler = PPOSchedulerAgent(model, H)
     generators = load_generators()
 
-    env = Environment(generators=generators, timesteps=1300000)
+    env = Environment(generators=generators, timesteps=10000)
     env_wrapper = MicroEnv(env)
-    metrics = train_ppo(model, optimizer, scheduler, env_wrapper, episodes=5000, eval_rate=100)
+    metrics = train_ppo(model, optimizer, scheduler, env_wrapper, episodes=2000, eval_rate=100)
         
     np.savez(save_file, 
             policy_loss_train=metrics['policy_loss'], value_loss_train=metrics['value_loss'],

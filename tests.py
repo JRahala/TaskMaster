@@ -18,21 +18,21 @@ from utils import Log, plot_general
 def make_env(steps):
     long_cat = TaskCategory(
         name="Long", task_id=2, category_seed=2,
-        mean_time=10, std_time=0.5,
+        mean_time=10, std_time=2,
         mean_buffer_time=4.0, std_buffer_time=0.3,
         mean_reward=2.0, std_reward=1.0,
         penalty_fn=linear_penalty
     )
     short_cat = TaskCategory(
         name="Short", task_id=1, category_seed=1,
-        mean_time=3, std_time=0.2,
+        mean_time=2, std_time=1,
         mean_buffer_time=2.0, std_buffer_time=0.3,
         mean_reward=20.0, std_reward=0.3,
         penalty_fn=linear_penalty
     )
     generators = [
-        TaskGenerator(long_cat,  generator_seed=10, probability=0.1),   # rare but large
-        TaskGenerator(short_cat, generator_seed=11, probability=0.1),   # frequent, tiny
+        TaskGenerator(long_cat,  generator_seed=10, probability=0.05),   # rare but large
+        TaskGenerator(short_cat, generator_seed=11, probability=0.3),   # frequent, tiny
     ]
     env = Environment(generators=generators, timesteps=steps * 10)
     return MicroEnv(env)
